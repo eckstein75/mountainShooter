@@ -4,6 +4,9 @@ Jogo 2D desenvolvido em Python com a biblioteca Pygame, utilizando programacao o
 
 O projeto apresenta um jogo de tiro com movimentacao lateral, dois jogadores, inimigos, efeitos visuais, pontuacao e progressao entre fases.
 
+## Captura de tela
+
+![Gameplay do Mountain Shooter](gameplay.png)
 ## Tecnologias
 
 - Python 3
