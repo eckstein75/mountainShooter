@@ -3,6 +3,7 @@ from pathlib import Path
 
 from code.Menu import Menu
 from code.Level import Level
+from code.Score import Score
 
 
 class Game:
@@ -48,6 +49,7 @@ class Game:
                         option
                     )
 
+                    active_level = level
                     result = level.run()
 
                     if result == "NEXT_LEVEL":
@@ -59,7 +61,20 @@ class Game:
                         ):
                             current.lives = previous.lives
                             current.last_damage_time = previous.last_damage_time
+                        active_level = level2
                         result = level2.run()
+
+                    if result == "GAME_OVER":
+                        self.play_music("Score.mp3")
+
+                        score_screen = Score(
+                            self.window,
+                            active_level.score,
+                            option,
+                            active_level.level_name
+                        )
+
+                        result = score_screen.run()
 
                     if result == "EXIT":
                         break

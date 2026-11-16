@@ -250,7 +250,7 @@ class Level:
                             if event.key in (
                                 pygame.K_RETURN, pygame.K_ESCAPE
                             ):
-                                return "MENU"
+                                return "GAME_OVER"
 
                     self.clock.tick(30)
 
