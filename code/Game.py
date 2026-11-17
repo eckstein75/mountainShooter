@@ -64,7 +64,7 @@ class Game:
                         active_level = level2
                         result = level2.run()
 
-                    if result == "GAME_OVER":
+                    if result in ("GAME_OVER", "VICTORY"):
                         self.play_music("Score.mp3")
 
                         score_screen = Score(

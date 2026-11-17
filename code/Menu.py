@@ -28,15 +28,15 @@ class Menu:
 
             width, height = self.window.get_size()
 
-            font_title = pygame.font.Font(None, 55)
-            font_menu = pygame.font.Font(None, 35)
+            font_title = pygame.font.Font(None, 45)
+            font_menu = pygame.font.Font(None, 31)
 
             title = font_title.render(
                 "MOUNTAIN SHOOTER", True, (255, 255, 255)
             )
 
             title_rect = title.get_rect(
-                center=(width // 2, height // 4)
+                center=(width // 2, 48)
             )
 
             self.window.blit(title, title_rect)
@@ -53,11 +53,44 @@ class Menu:
                 text_rect = text.get_rect(
                     center=(
                         width // 2,
-                        height // 2 + index * 40
+                        110 + index * 36
                     )
                 )
 
                 self.window.blit(text, text_rect)
+
+            # Instrucoes obrigatorias na tela inicial
+            panel = pygame.Surface(
+                (width - 24, 106),
+                pygame.SRCALPHA
+            )
+            panel.fill((0, 0, 0, 190))
+            self.window.blit(panel, (12, height - 112))
+
+            font_help = pygame.font.Font(None, 21)
+
+            instructions = (
+                "J1: W A S D = MOVER | ESPACO = ATIRAR",
+                "J2: SETAS = MOVER | CTRL DIREITO = ATIRAR",
+                "MENU: SETAS = SELECIONAR | ENTER = INICIAR",
+                "DURANTE JOGO: ESC = VOLTAR AO MENU"
+            )
+
+            for index, instruction in enumerate(instructions):
+                text_help = font_help.render(
+                    instruction,
+                    True,
+                    (255, 255, 255)
+                )
+
+                text_help_rect = text_help.get_rect(
+                    center=(
+                        width // 2,
+                        height - 94 + index * 25
+                    )
+                )
+
+                self.window.blit(text_help, text_help_rect)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

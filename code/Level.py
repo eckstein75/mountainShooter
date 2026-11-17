@@ -178,6 +178,72 @@ class Level:
             if self.level_name == "Level1" and self.score >= 100:
                 return "NEXT_LEVEL"
 
+            # Condicao de vitoria na segunda fase
+            if self.level_name == "Level2" and self.score >= 200:
+                overlay = pygame.Surface(
+                    self.window.get_size(),
+                    pygame.SRCALPHA
+                )
+                overlay.fill((0, 0, 0, 190))
+                self.window.blit(overlay, (0, 0))
+
+                width, height = self.window.get_size()
+
+                font_win = pygame.font.Font(None, 70)
+                win_text = font_win.render(
+                    "YOU WIN!",
+                    True,
+                    (255, 215, 0)
+                )
+                self.window.blit(
+                    win_text,
+                    win_text.get_rect(
+                        center=(width // 2, height // 2 - 55)
+                    )
+                )
+
+                font_info = pygame.font.Font(None, 30)
+                score_text = font_info.render(
+                    f"SCORE FINAL: {self.score}",
+                    True,
+                    (255, 255, 255)
+                )
+                self.window.blit(
+                    score_text,
+                    score_text.get_rect(
+                        center=(width // 2, height // 2 + 5)
+                    )
+                )
+
+                font_help = pygame.font.Font(None, 24)
+                help_text = font_help.render(
+                    "ENTER OU ESC: VER SCORE",
+                    True,
+                    (255, 255, 255)
+                )
+                self.window.blit(
+                    help_text,
+                    help_text.get_rect(
+                        center=(width // 2, height // 2 + 55)
+                    )
+                )
+
+                pygame.display.flip()
+
+                while True:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            return "EXIT"
+
+                        if event.type == pygame.KEYDOWN:
+                            if event.key in (
+                                pygame.K_RETURN,
+                                pygame.K_ESCAPE
+                            ):
+                                return "VICTORY"
+
+                    self.clock.tick(30)
+
             for enemy in self.enemies:
                 self.window.blit(enemy.surf, enemy.rect)
 
